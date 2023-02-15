@@ -1,0 +1,8 @@
+[
+    {"id":"1", "nombre":"Gorro de hilo Amarillo", "precio":14.99, "foto":"./img/gorro.jpeg"},
+    {"id":"2", "nombre":"Gorro de hilo Rosa", "precio":10.99, "foto":"./img/gorro2.jpeg"},
+    {"id":"3", "nombre":"Gorro de hilo blanco", "precio":13.89, "foto":"./img/gorro3.jpeg"},
+    {"id":"4", "nombre":"Gorro de hilo negro", "precio":15.50, "foto":"./img/gorro4.jpeg"},
+    {"id":"5", "nombre":"Gorro de hilo verde", "precio":14.60, "foto":"./img/gorro5.jpeg"},
+    {"id":"6", "nombre":"Gorro de hilo rojo", "precio":12.5, "foto":"./img/gorro6.jpeg"}   
+]
