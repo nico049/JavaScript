@@ -42,20 +42,66 @@ function cargarProductos() {
 }
 const traerDatos = async () => {
     const productosNuevos= document.getElementById("contenedor-productos");
-    const response = await fetch("../data.json");
-    const data = await response.json();
-    data.forEach((elementos) => {
+    try{
+        const response = await fetch("../data.json");
+        const data = await response.json();
+        data.forEach((elementos) => {
         const div = document.createElement("div");
+        div.className = "card m-2 p-2";
+        div.style = "width: 18rem";
         div.innerHTML= `
-        <img src= ${elementos.foto}>
-        <div>
+        <img  src= ${elementos.foto} class="card-img-top">
+        <div class="card-body">
             <h5>${elementos.nombre}</h5>
             <p> $${elementos.precio}</p>
-            <button> Comprar </button>
+            <button class= "btn btn-success"> Agregar </button>
         </div>
         `;
         productosNuevos.append(div);
-    });
+        botonAgregar= document.getElementsByTagName("button")
+        botonAgregar.onclick = () => {
+        
+        let elementoExistente = 
+        elementosCarrito.find((elem) => elem.elementos.id == elementos.id);
+                
+        if(elementoExistente) {
+            elementoExistente.cantidad+=1;
+        } else {
+            let elementoCarrito = new ElementoCarrito(producto, 1);
+            elementosCarrito.push(elementoCarrito);
+        }
+        
+        dibujarCarrito();
+        
+            swal({
+                title: '¡Producto agregado!',
+                text: `${elementos.nombre} agregado al carrito`,
+                icon: 'success',
+                buttons: {
+                    cerrar: {
+                        text: "cerrar",
+                        value: false
+                    },
+                    carrito: {
+                        text: "ir a carrito",
+                        value: true
+                    }
+                }
+            }).then((decision) => {
+                if(decision) {
+                    const myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {keyboard: true});
+                    const modalToggle = document.getElementById('toggleMyModal'); 
+                    myModal.show(modalToggle);
+                } else {
+                    swal("No quieres ir al carrito");
+                }
+            });
+    }
+        });
+    }catch (error){
+      console.log(error);  
+    }
+    
 };
 traerDatos();
 
